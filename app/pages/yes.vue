@@ -29,7 +29,7 @@
       </NuxtLink>
 
       <NuxtLink
-        to="/letter"
+        to="/album"
         data-aos="zoom-in"
         class="card_menu w-[260px] h-[260px] border-[10px] border-[#c2006f] rounded-[35px] bg-[#faf7f7] flex items-center justify-center overflow-hidden hover:-translate-y-3 hover:scale-[1.04] mx-auto"
       >
