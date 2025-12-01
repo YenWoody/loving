@@ -1,116 +1,68 @@
 <template>
   <div
-    class="no-page min-h-screen flex flex-col items-center justify-center bg-cover bg-center text-center"
-    :style="{ backgroundImage: `url('/img/bg.jpg')` }"
+    class="min-h-screen flex flex-col items-center pt-24 bg-[url('/paper-bg.jpg')] bg-cover bg-center"
   >
-    <div class="face flex items-center justify-center mb-8">
-      <!-- Left Eye -->
-      <svg
-        width="180"
-        height="200"
-        viewBox="0 0 180 200"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        class="mx-4"
-      >
-        <ellipse cx="90" cy="100" rx="80" ry="90" fill="black" />
-        <ellipse cx="60" cy="70" rx="30" ry="35" fill="white" />
-        <ellipse cx="110" cy="120" rx="15" ry="10" fill="#B3E6FF" />
-        <ellipse cx="80" cy="110" rx="8" ry="10" fill="white" />
-        <ellipse cx="120" cy="60" rx="10" ry="12" fill="white" />
-      </svg>
-      <!-- Mouth -->
-      <svg
-        width="180"
-        height="80"
-        viewBox="0 0 180 80"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        class="mx-4"
-      >
-        <path
-          d="M30 60 Q90 10 150 60"
-          stroke="black"
-          stroke-width="10"
-          fill="none"
-          stroke-linecap="round"
-        />
-      </svg>
-      <!-- Right Eye -->
-      <svg
-        width="180"
-        height="200"
-        viewBox="0 0 180 200"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        class="mx-4"
-      >
-        <ellipse cx="90" cy="100" rx="80" ry="90" fill="black" />
-        <ellipse cx="120" cy="70" rx="30" ry="35" fill="white" />
-        <ellipse cx="70" cy="120" rx="15" ry="10" fill="#B3E6FF" />
-        <ellipse cx="100" cy="110" rx="8" ry="10" fill="white" />
-        <ellipse cx="60" cy="60" rx="10" ry="12" fill="white" />
-      </svg>
-    </div>
-    <div
-      class="desc text-xl md:text-2xl text-gray-800 mb-10 flex items-center justify-center gap-2 flex-wrap"
+    <!-- Title -->
+    <h1
+      class="text-[3.5rem] md:text-[5rem] p-2 text-center font-[cursive] text-[#b01257] mb-[5rem] font-semibold tracking-wide"
+      data-aos="fade-up"
+      style="
+        font-family:
+          Great Vibes,
+          cursive;
+      "
     >
-      Ouch... my heart just broke into tiny pieces
-      <span class="text-2xl">💔</span>
-      Click yes before I cry...
-    </div>
+      Your Surprise Menu, Love <span>💖</span>
+    </h1>
+
+    <!-- Menu grid: 1 col mobile, 2 col tablet, 4 col desktop -->
+    <!-- Menu -->
     <div
-      class="flex flex-col md:flex-row justify-center gap-6 w-full max-w-xl px-4"
+      class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 mb-20 px-6"
     >
-      <button class="btn w-full md:w-auto" @click="goYes">
-        Wait!! Yes, Love.
-      </button>
-      <button class="btn w-full md:w-auto" @click="goNo">Still No!</button>
+      <NuxtLink
+        to="/letter"
+        data-aos="zoom-in"
+        class="card_menu w-[260px] h-[260px] border-[10px] border-[#c2006f] rounded-[35px] bg-[#faf7f7] flex items-center justify-center overflow-hidden hover:-translate-y-3 hover:scale-[1.04] mx-auto"
+      >
+        <img src="/img/letter.png" class="inner w-[80%]" />
+      </NuxtLink>
+
+      <NuxtLink
+        to="/letter"
+        data-aos="zoom-in"
+        class="card_menu w-[260px] h-[260px] border-[10px] border-[#c2006f] rounded-[35px] bg-[#faf7f7] flex items-center justify-center overflow-hidden hover:-translate-y-3 hover:scale-[1.04] mx-auto"
+      >
+        <img src="/img/camera.png" class="inner w-[80%]" />
+      </NuxtLink>
+
+      <NuxtLink
+        to="/letter"
+        data-aos="zoom-in"
+        class="card_menu w-[260px] h-[260px] border-[10px] border-[#c2006f] rounded-[35px] bg-[#faf7f7] flex items-center justify-center overflow-hidden hover:-translate-y-3 hover:scale-[1.04] mx-auto"
+      >
+        <img src="/img/music.png" class="inner w-[80%]" />
+      </NuxtLink>
     </div>
+
+    <!-- Back Button -->
+    <NuxtLink
+      to="/"
+      class="card_menu w-14 h-14 flex items-center justify-center rounded-full text-white text-2xl bg-[#c2006f] hover:scale-110 transition"
+      aria-label="back"
+    >
+      ⭯
+    </NuxtLink>
   </div>
 </template>
 
 <script setup>
-const goYes = () => navigateTo("/yes");
-const goNo = () => navigateTo("/no");
+// Không cần script ở bản này; nếu sau cần animation GSAP hay heart-effect thì mình thêm.
 </script>
 
-<style scoped>
-.no-page {
-  background-image: url("/img/bg.jpg");
-  background-size: cover;
-  background-position: center;
-  min-height: 100vh;
-}
-.face {
-  margin-bottom: 2rem;
-}
-.btn {
-  background: #b01257;
-  color: white;
-  padding: 16px 48px;
-  font-size: 1.25rem;
-  border: none;
-  border-radius: 2rem;
-  font-weight: 600;
-  transition: 0.3s;
-  cursor: pointer;
-}
-.btn:hover {
-  transform: scale(1.08);
-  background: #a0104e;
-}
-@media (max-width: 600px) {
-  .face svg {
-    width: 90px !important;
-    height: 100px !important;
-  }
-  .desc {
-    font-size: 1rem !important;
-  }
-  .btn {
-    font-size: 1rem;
-    padding: 12px 10px;
-  }
-}
+<style>
+/* Nếu bạn dùng Google Fonts, import Great Vibes ở đây (hoặc import vào app.vue/layout) */
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
+
+/* Một ít CSS tùy chỉnh (không dùng @apply) */
 </style>

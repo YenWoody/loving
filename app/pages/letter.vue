@@ -1,0 +1,247 @@
+<template>
+  <div
+    class="min-h-screen flex items-center justify-around gap-10 bg-[url('/paper-bg.jpg')] bg-cover p-6"
+  >
+    <div
+      ref="envelope"
+      class="relative"
+      style="
+        width: 370px;
+        position: relative;
+        height: 300px;
+        background-color: #c43f81;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        z-index: 99;
+      "
+    >
+      <div
+        ref="topBorder"
+        style="
+          position: absolute;
+          top: -140px;
+          left: 0;
+          width: 100%;
+          height: 140px;
+          background: white; /* Màu viền */
+          clip-path: polygon(50% 0%, 100% 100%, 0 100%);
+          z-index: 1; /* Dưới nắp chính (z-index: 30) */
+          transform: scale(1.03); /* Tạo độ dày viền */
+        "
+      />
+
+      <div
+        ref="leftBorder"
+        style="
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 50%;
+          height: 100%;
+          background: white; /* Màu viền */
+          clip-path: polygon(0 0, 100% 50%, 100% 100%, 0 100%);
+          z-index: 19; /* Dưới cánh chính (z-index: 20) */
+          transform: scale(1.02); /* Tạo độ dày viền */
+        "
+      />
+
+      <div
+        ref="rightBorder"
+        style="
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          width: 50%;
+          height: 100%;
+          background: white; /* Màu viền */
+          clip-path: polygon(0 50%, 100% 0, 100% 100%, 0 100%);
+          z-index: 19; /* Dưới cánh chính (z-index: 20) */
+          transform: scale(1.02); /* Tạo độ dày viền */
+        "
+      />
+
+      <div
+        ref="bottomBorder"
+        style="
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 65%;
+          background: white; /* Màu viền */
+          clip-path: polygon(50% 0%, 100% 100%, 0 100%);
+          z-index: 29; /* Dưới cánh chính (z-index: 30) */
+          transform: scale(1.03); /* Tạo độ dày viền */
+        "
+      />
+
+      <div
+        id="top"
+        ref="topFlap"
+        style="
+          position: absolute;
+          top: -140px;
+          left: 0;
+          width: 100%;
+          height: 140px;
+          background: #c21755;
+          clip-path: polygon(50% 0%, 100% 100%, 0 100%);
+          z-index: 1;
+        "
+      />
+
+      <div
+        id="left"
+        ref="leftFlap"
+        style="
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 50%;
+          height: 100%;
+          background: #c21755;
+          clip-path: polygon(0 0, 100% 50%, 100% 100%, 0 100%);
+          z-index: 20;
+        "
+      />
+
+      <div
+        id="right"
+        ref="rightFlap"
+        style="
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          width: 50%;
+          height: 100%;
+          background: #c21755;
+          clip-path: polygon(0 50%, 100% 0, 100% 100%, 0 100%);
+          z-index: 20;
+        "
+      />
+
+      <div
+        id="bottom"
+        ref="bottomFlap"
+        style="
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 65%;
+          background: #c21755;
+          clip-path: polygon(50% 0%, 100% 100%, 0 100%);
+          z-index: 30;
+        "
+      />
+
+      <img
+        ref="photo"
+        src="/img/envelop.jpg"
+        class="opacity-0 rounded-xl shadow-xl rotate-[-4deg]"
+        style="
+          position: absolute;
+          top: -70%;
+          left: 50%;
+          transform: translateX(-50%) rotate(-4deg);
+          width: 250px;
+          z-index: 3;
+        "
+      />
+    </div>
+
+    <div
+      ref="letter"
+      class="opacity-0 w-[480px] min-h-[600px] rounded-xl shadow-xl p-10 leading-loose"
+      style="
+        padding: 54px;
+        background-image: url(/img/letter_bg.png);
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        position: absolute;
+        z-index: 120;
+        translate: none;
+        border: unset;
+        width: 50%;
+        height: 500px;
+        rotate: none;
+        scale: none;
+        opacity: 1;
+        transform: translate(0px, 0px);
+        font-family:
+          Great Vibes,
+          cursive;
+      "
+    >
+      hey love, 💌
+      <br /><br />
+      Hey Love, Happy Monthsary! 🎉 Can you believe we’ve survived another month
+      of your [insert funny thing about them — like “endless corny jokes” or
+      “late- night food cravings”]? Honestly, I wouldn’t have it any other way.
+      Every day with you is like my favorite adventure — sometimes crazy,
+      sometimes sweet, but always worth it. Thank you for making me laugh, for
+      putting up with my [insert your funny trait — like “weird mood swings” or
+      “constant food cravings”], and for loving me just the same. Here’s to more
+      months of silly selfies, random fights over food, and memories that we’ll
+      laugh about forever. You’re my favorite person — and yes, even when you
+      annoy me, you’re still my favorite. 💕 Love,
+    </div>
+
+    <div
+      ref="filmCard"
+      class="opacity-1 w-[260px] border-[12px] border-[#c21755] shadow-2xl p-2 rotate-[1deg] z-50"
+      style="
+        z-index: 120;
+        font-family:
+          Great Vibes,
+          cursive;
+      "
+    >
+      <img src="/img/letter.png" class="mb-3 rounded-sm" />
+      <img src="/img/letter.png" class="rounded-sm" />
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { onMounted, ref } from "vue";
+import { gsap } from "gsap";
+
+const envelope = ref(null);
+const photo = ref(null);
+const letter = ref(null);
+const filmCard = ref(null);
+
+// Refs cho 4 mảnh chính
+const topFlap = ref(null);
+const leftFlap = ref(null);
+const rightFlap = ref(null);
+const bottomFlap = ref(null);
+
+// Refs cho 4 mảnh viền (border)
+const topBorder = ref(null);
+const leftBorder = ref(null);
+const rightBorder = ref(null);
+const bottomBorder = ref(null);
+
+onMounted(() => {
+  if (envelope.value && photo.value && letter.value && filmCard.value) {
+    const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
+
+    // ✉ GIỮ ENVELOPE Ở TRẠNG THÁI HIỂN THỊ
+    tl.from(envelope.value, { duration: 0.01 });
+
+    // Các thành phần khác animation TỪ trạng thái ẩn ĐẾN trạng thái hiện tại (opacity: 1)
+    tl.from(photo.value, { y: 320, opacity: 0, duration: 1.4 }, "-=.2")
+      .from(letter.value, { y: -120, opacity: 0, duration: 1.2 }, "-=.5")
+      .from(filmCard.value, { x: 150, opacity: 0, duration: 1 }, "-=.6");
+  }
+});
+</script>
+
+<style>
+/* Nếu bạn dùng Google Fonts, import Great Vibes ở đây (hoặc import vào app.vue/layout) */
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
+
+/* Một ít CSS tùy chỉnh (không dùng @apply) */
+</style>

@@ -5,7 +5,12 @@
   >
     <div ref="wrapper" class="wrapper">
       <!-- Icon cute -->
-      <img src="" alt="cute-cat" class="mx-auto w-20 mb-5" />
+      <img
+        id="heart"
+        src="/img/heart.png"
+        alt="cute-cat"
+        class="mx-auto w-20 mb-5"
+      />
 
       <h1
         class="title text-[10rem] font-[cursive] text-[#b01257] mb-[5px] font-semibold tracking-wide"
@@ -22,10 +27,10 @@
 
       <!-- Buttons -->
       <div class="mt-12 flex justify-center">
-        <NuxtLink to="/yes" class="btn sm:mx-[20px] mx-[50px] w-full"
+        <NuxtLink to="/yes" class="btn md:mx-[20px] mx-[5px] w-auto sm:w-full"
           >Yes, Love!</NuxtLink
         >
-        <NuxtLink to="/no" class="btn sm:mx-[20px] mx-[50px] w-full"
+        <NuxtLink to="/no" class="btn md:mx-[20px] mx-[5px] w-auto sm:w-full"
           >No!</NuxtLink
         >
       </div>
@@ -54,7 +59,10 @@ onMounted(() => {
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
-
+#heart {
+  animation: beat 1s infinite;
+  scale: 2;
+}
 .home {
   background-size: cover;
   background-position: center;
