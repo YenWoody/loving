@@ -51,7 +51,7 @@
       class="card_menu w-14 h-14 flex items-center justify-center rounded-full text-white text-2xl bg-[#c2006f] hover:scale-110 transition"
       aria-label="back"
     >
-      ⭯
+      ↩
     </NuxtLink>
   </div>
 </template>
