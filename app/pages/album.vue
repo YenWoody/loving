@@ -1,18 +1,27 @@
 <template>
   <div class="album-container bg-[url('/paper-bg.jpg')] bg-cover bg-center">
-    <h1 class="title">A Gallery of Love ❤️</h1>
+    <h1 class="title relative z-30">A Gallery of Love ❤️</h1>
 
-    <div ref="albumWrapper" class="album-wrapper">
-      <img
+    <div
+      ref="albumWrapper"
+      class="album-wrapper grid gap-4 px-4 md:grid-cols-4 grid-cols-1 auto-rows-auto"
+    >
+      <div
         v-for="(img, index) in photos"
         :key="index"
-        ref="photoRefs"
-        class="photo"
-        :src="img"
-      />
+        class="relative w-full h-[240px] md:h-[300px] flex items-center justify-center"
+      >
+        <img ref="photoRefs" class="photo" :src="img" />
+      </div>
     </div>
-
-    <button class="back-btn" @click="goBack">↩</button>
+    <NuxtLink
+      to="/yes"
+      class="card_menu fixed w-14 h-14 flex items-center justify-center rounded-full text-white text-2xl bg-[#c2006f] hover:scale-110 transition"
+      aria-label="back"
+      style="left: 50%; transform: translateX(-50%); bottom: 30px"
+    >
+      ↩
+    </NuxtLink>
   </div>
 </template>
 
@@ -37,118 +46,114 @@ const photos = [
   "/img/8.png",
 ];
 
-// ⭐ Random trong safe zone 70%
-const randomPosition = (W, H, el) => {
-  const imgW = el.offsetWidth;
-  const imgH = el.offsetHeight;
+// ⭐ Random trong từng ô grid
+const randomPositionInsideCell = (box, img) => {
+  const bw = box.clientWidth;
+  const bh = box.clientHeight;
+  const iw = img.offsetWidth;
+  const ih = img.offsetHeight;
 
-  const minX = W * 0.15;
-  const maxX = W * 0.85 - imgW;
+  const x = gsap.utils.random((bw - iw) * 0.15, (bw - iw) * 0.85);
+  const y = gsap.utils.random((bh - ih) * 0.15, (bh - ih) * 0.85);
 
-  const minY = H * 0.15;
-  const maxY = H * 0.85 - imgH;
-
-  return {
-    x: gsap.utils.random(minX, maxX),
-    y: gsap.utils.random(minY, maxY),
-  };
+  return { x, y };
 };
 
 onMounted(async () => {
   await nextTick();
 
-  const items = photoRefs.value;
-  if (!items.length) return;
+  const photosEl = photoRefs.value;
+  const cells = albumWrapper.value.children;
 
-  const W = window.innerWidth;
-  const H = window.innerHeight;
+  if (!photosEl.length) return;
 
-  items.forEach((el, i) => {
-    const pos = randomPosition(W, H, el);
+  photosEl.forEach((el, i) => {
+    const box = cells[i];
+    const finalPos = randomPositionInsideCell(box, el);
 
-    // ⭐ Animation bay vào (phiên bản đẹp hơn)
+    // Tạo draggable TRƯỚC nhưng bị disable
+    const drag = Draggable.create(el, {
+      type: "x,y",
+      inertia: true,
+      edgeResistance: 0.5,
+      activeCursor: "grabbing",
+      zIndexBoost: false,
+      bounds: albumWrapper.value,
+      onDragStart() {
+        gsap.to(el, {
+          scale: 1.15,
+          rotation: 0,
+          duration: 0.2,
+        });
+        el.style.zIndex = 999;
+      },
+      onRelease() {
+        gsap.to(el, {
+          scale: 1,
+          rotation: gsap.utils.random(-10, 10),
+          duration: 0.35,
+          ease: "elastic.out(1, 0.4)",
+        });
+        el.style.zIndex = i + 10;
+      },
+    })[0];
+
+    drag.disable(); // ⚠ Disable ban đầu → không gây giật
+
+    // Animation xuất hiện
     gsap.fromTo(
       el,
       {
         opacity: 0,
         scale: 0.2,
-        x: gsap.utils.random(-400, 400),
-        y: gsap.utils.random(-400, -200),
+        x: gsap.utils.random(-200, 200),
+        y: gsap.utils.random(-300, -150),
         rotation: gsap.utils.random(-180, 180),
       },
       {
         opacity: 1,
         scale: 1,
-        x: pos.x,
-        y: pos.y,
-        rotation: gsap.utils.random(-25, 25),
-        duration: 8,
-        delay: i * 0.5,
-        ease: "elastic.out(0.5, 0.3)", // 🌟 bay vào mềm mịn
+        x: finalPos.x,
+        y: finalPos.y,
+        rotation: gsap.utils.random(-15, 15),
+        duration: 2,
+        ease: "elastic.out(0.6, 0.35)",
+        delay: i * 0.25,
         onComplete: () => {
-          // ⭐ Cho phép kéo
-          Draggable.create(el, {
-            type: "x,y",
-            bounds: albumWrapper.value,
-            inertia: true,
-            edgeResistance: 0.8,
-
-            onDragStart() {
-              // nâng scale khi kéo
-              gsap.to(el, {
-                scale: 1.18,
-                rotation: 0,
-                duration: 0.2,
-                ease: "power2.out",
-              });
-              el.style.zIndex = 999;
-            },
-
-            onRelease() {
-              // ⭐ hiệu ứng thả xuống tự nhiên
-              gsap.to(el, {
-                scale: 1,
-                rotation: gsap.utils.random(-20, 20),
-                duration: 0.4,
-                ease: "elastic.out(1, 0.5)",
-              });
-              el.style.zIndex = i + 10;
-            },
-          });
+          drag.enable(); // ⭐ DRAGGABLE ENABLE SAU ANIMATION
         },
       }
     );
   });
 });
-
-const goBack = () => window.history.back();
 </script>
 
 <style scoped>
 .album-container {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh; /* 🔥 Sửa để mobile scroll được */
+  overflow-y: auto; /* 🔥 Cho phép scroll */
   position: relative;
-  overflow: hidden;
+  padding-bottom: 100px; /* Để tránh che nút back */
 }
 
 .album-wrapper {
   width: 100%;
-  height: 100%;
-  position: relative;
+  padding-bottom: 40px;
 }
 
 .title {
   text-align: center;
-  margin-top: 20px;
-  font-size: 45px;
+  margin: 16px 0;
+  font-size: 38px;
   font-weight: bold;
   font-family: "Great Vibes", cursive;
   color: #c71585;
 }
 
 .photo {
-  width: 250px;
+  width: 80%;
+  max-width: 260px;
   position: absolute;
   opacity: 0;
   cursor: grab;
@@ -158,20 +163,5 @@ const goBack = () => window.history.back();
 
 .photo:active {
   cursor: grabbing;
-}
-
-.back-btn {
-  position: fixed;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  font-size: 24px;
-  border: none;
-  cursor: pointer;
-  color: #fff;
-  background: #c71585;
 }
 </style>
