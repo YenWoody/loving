@@ -139,11 +139,11 @@
 
         <img
           ref="photo"
-          src="/img/envelop.jpg"
+          src="/img/envelop_1.jpg"
           class="rounded-xl shadow-xl rotate-[-4deg]"
           style="
             position: absolute;
-            top: -70%;
+            top: -30%;
             left: 50%;
             transform: translateX(-50%) rotate(-4deg);
             width: 250px;
@@ -204,8 +204,8 @@
           transform: rotate(1deg) translateX(20%);
         "
       >
-        <img src="/img/letter.png" class="mb-3 rounded-sm" />
-        <img src="/img/letter.png" class="rounded-sm" />
+        <img src="/img/letter_pic_1.jpg" class="mb-3 rounded-sm" />
+        <img src="/img/letter_pic_2.jpg" class="rounded-sm" />
       </div>
       <!-- Back Button -->
     </div>
