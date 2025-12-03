@@ -6,13 +6,15 @@
       class="min-h-screen w-full bg-[url('/paper-bg.jpg')] bg-cover bg-fixed p-6 flex flex-col items-center"
     >
       <!-- VIDEO WRAPPER -->
+
       <div
         class="w-full max-w-4xl bg-white/0 border-[12px] border-[#d62878] rounded-2xl shadow-2xl overflow-hidden mb-10"
       >
         <iframe
           class="w-full aspect-video"
-          src="https://www.youtube.com/embed/kH8TTMg-kS8"
-          title="YouTube video"
+          src="https://www.youtube.com/embed/6CRUnSXp4-k?si=BoEBLruHOcBpI3gP"
+          title="YouTube video player"
+          frameborder="0"
           allow="
             accelerometer;
             autoplay;
@@ -22,25 +24,7 @@
             picture-in-picture;
             web-share;
           "
-          allowfullscreen
-        />
-      </div>
-      <div
-        class="w-full max-w-4xl bg-white/0 border-[12px] border-[#d62878] rounded-2xl shadow-2xl overflow-hidden mb-10"
-      >
-        <iframe
-          class="w-full aspect-video"
-          src="https://www.youtube.com/embed/kH8TTMg-kS8"
-          title="YouTube video"
-          allow="
-            accelerometer;
-            autoplay;
-            clipboard-write;
-            encrypted-media;
-            gyroscope;
-            picture-in-picture;
-            web-share;
-          "
+          referrerpolicy="strict-origin-when-cross-origin"
           allowfullscreen
         />
       </div>

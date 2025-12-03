@@ -23,7 +23,6 @@
       >
         <NuxtLink
           to="/letter"
-          data-aos="zoom-in"
           class="card_menu w-[260px] h-[260px] border-[10px] border-[#c2006f] rounded-[35px] bg-[#faf7f7] flex items-center justify-center overflow-hidden hover:-translate-y-3 hover:scale-[1.04] mx-auto"
         >
           <img src="/img/letter.png" class="inner w-[80%]" />
@@ -31,15 +30,13 @@
 
         <NuxtLink
           to="/album"
-          data-aos="zoom-in"
           class="card_menu w-[260px] h-[260px] border-[10px] border-[#c2006f] rounded-[35px] bg-[#faf7f7] flex items-center justify-center overflow-hidden hover:-translate-y-3 hover:scale-[1.04] mx-auto"
         >
           <img src="/img/camera.png" class="inner w-[80%]" />
         </NuxtLink>
 
         <NuxtLink
-          to="/letter"
-          data-aos="zoom-in"
+          to="/video"
           class="card_menu w-[260px] h-[260px] border-[10px] border-[#c2006f] rounded-[35px] bg-[#faf7f7] flex items-center justify-center overflow-hidden hover:-translate-y-3 hover:scale-[1.04] mx-auto"
         >
           <img src="/img/music.png" class="inner w-[80%]" />
@@ -59,9 +56,7 @@
   </div>
 </template>
 
-<script setup>
-// Không cần script ở bản này; nếu sau cần animation GSAP hay heart-effect thì mình thêm.
-</script>
+<script setup></script>
 
 <style>
 /* Nếu bạn dùng Google Fonts, import Great Vibes ở đây (hoặc import vào app.vue/layout) */
