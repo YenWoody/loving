@@ -1,6 +1,6 @@
 <template>
   <div
-    class="album-container bg-[url('./img/picture_bg.jpg')] bg-cover bg-center overflow-hidden"
+    class="album-container bg-[url('/img/picture_bg.jpg')] bg-cover bg-center overflow-hidden"
   >
     <h1 class="title relative z-30">A Gallery of Love ❤️</h1>
 

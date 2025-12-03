@@ -7,7 +7,7 @@
       <img
         id="heart"
         src="/img/heart.png"
-        alt="cute-cat"
+        alt="heart"
         class="mx-auto w-20 mb-5"
       />
 
@@ -23,7 +23,7 @@
         class="subtitle text-[2rem] text-gray-800 mt-5 flex items-center justify-center gap-2"
       >
         Do you want to see the surprise that might make you blush?
-        <span>🥺</span>
+        <span>😍</span>
       </p>
 
       <!-- Buttons -->
