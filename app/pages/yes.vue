@@ -45,12 +45,14 @@
       aria-label="back"
       style="left: 50%; transform: translateX(-50%); bottom: 30px"
     >
-      ↩
+      <Icon icon="mdi:arrow-left" width="32" height="32" />
     </NuxtLink>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { Icon } from "@iconify/vue";
+</script>
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");

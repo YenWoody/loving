@@ -1,4 +1,6 @@
-<script setup></script>
+<script setup>
+import { Icon } from "@iconify/vue";
+</script>
 
 <template>
   <div>
@@ -45,7 +47,7 @@
       aria-label="back"
       style="left: 10%; transform: translateX(-50%); bottom: 30px"
     >
-      ↩
+      <Icon icon="mdi:arrow-left" width="32" height="32" />
     </NuxtLink>
   </div>
 </template>

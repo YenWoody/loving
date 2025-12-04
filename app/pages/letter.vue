@@ -231,14 +231,16 @@
       to="/yes"
       class="card_menu fixed w-14 h-14 flex items-center justify-center rounded-full text-white text-2xl bg-[#c2006f] hover:scale-110 transition"
       style="left: 50%; transform: translateX(-50%); bottom: 30px"
-      >↩</NuxtLink
     >
+      <Icon icon="mdi:arrow-left" width="32" height="32" />
+    </NuxtLink>
   </div>
 </template>
 
 <script setup>
 import { onMounted, ref } from "vue";
 import { gsap } from "gsap";
+import { Icon } from "@iconify/vue";
 
 const envelope = ref(null);
 const letter = ref(null);
