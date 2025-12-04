@@ -1,10 +1,8 @@
 <template>
   <div
     class="no-page min-h-screen flex flex-col items-center justify-center bg-cover bg-center text-center"
-    :style="{ backgroundImage: `url('/img/bg.jpg')` }"
   >
     <div class="face flex items-center justify-center mb-8">
-      <!-- Left Eye -->
       <svg
         width="180"
         height="200"
@@ -70,9 +68,7 @@
   </div>
 </template>
 
-<script setup>
-// ...existing code...
-</script>
+<script setup></script>
 
 <style scoped>
 .no-page {

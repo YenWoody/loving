@@ -3,7 +3,6 @@
     <div
       class="wrap relative min-h-[100vh] flex items-center justify-center gap-10 bg-[url('/paper-bg.jpg')] overflow-hidden bg-cover scale-[0.90]"
     >
-      <!-- ENVELOPE -->
       <div
         id="envelope"
         ref="envelope"
@@ -75,8 +74,6 @@
             transform: scale(1.03);
           "
         />
-
-        <!-- Envelope Flaps -->
         <div
           ref="topFlap"
           style="
@@ -129,8 +126,6 @@
             z-index: 30;
           "
         />
-
-        <!-- LETTER INSIDE ENVELOPE (clone) -->
         <div
           ref="letterInside"
           class="rounded-xl shadow-xl p-6 text-[1.1rem]"
@@ -150,7 +145,6 @@
               cursive;
           "
         >
-          <!-- giữ nguyên toàn bộ nội dung -->
           <p>hey love, 💌</p>
           <div class="relative overflow-hidden h-[220px] line-clamp-4">
             Dear Mehra! We met when I was about to turn 30, and it’s been nearly
@@ -168,12 +162,9 @@
             opening my eyes and seeing your face right there, calm and safe.
             Holding your hand in the morning and knowing we actually made it. No
             overthinking, no fear, just us.
-            <!-- (nguyên nội dung thư của bạn ở đây — KHÔNG thay đổi) -->
           </div>
         </div>
       </div>
-
-      <!-- LETTER REAL (GỐC) -->
       <div
         id="letter"
         ref="letter"
@@ -190,7 +181,6 @@
             cursive;
         "
       >
-        <!-- NGUYÊN NỘI DUNG BẠN GIỮ NGUYÊN -->
         <p class="text-[1.5rem]">hey love, 💌</p>
         <div class="relative overflow-auto h-[90%] text-[1.5rem] top-0">
           Dear Mehra! We met when I was about to turn 30, and it’s been nearly 4
@@ -220,8 +210,6 @@
           Love,
         </div>
       </div>
-
-      <!-- PHOTOS -->
       <div
         id="film-card"
         ref="filmCard"
@@ -268,16 +256,18 @@ const rightBorder = ref(null);
 const bottomBorder = ref(null);
 
 onMounted(() => {
-  // Ẩn thư gốc khi load trang
+  if (window.location.hash.includes("&")) {
+    history.replaceState(null, "", window.location.pathname);
+  }
   gsap.set(letter.value, { opacity: 0, scale: 0.9 });
   gsap.fromTo(
     letterInside.value,
     {
-      y: 140, // nằm thấp hơn trong phong bì
+      y: 140,
       opacity: 1,
     },
     {
-      y: 0, // trượt lên miệng phong bì
+      y: 0,
       opacity: 1,
       duration: 1.2,
       ease: "power3.out",
@@ -285,8 +275,6 @@ onMounted(() => {
     }
   );
 });
-
-// CLICK OPEN ENVELOPE
 const openEnvelope = () => {
   const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
 
@@ -322,7 +310,6 @@ const openEnvelope = () => {
   }
 
   #letter {
-    /* position: relative !important; */
     transform: none !important;
     width: 100% !important;
     margin-top: 20px;

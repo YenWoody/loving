@@ -72,8 +72,6 @@ onMounted(async () => {
   photosEl.forEach((el, i) => {
     const box = cells[i];
     const finalPos = randomPositionInsideCell(box, el);
-
-    // Tạo draggable TRƯỚC nhưng bị disable
     const drag = Draggable.create(el, {
       type: "x,y",
       inertia: true,
@@ -100,9 +98,7 @@ onMounted(async () => {
       },
     })[0];
 
-    drag.disable(); // ⚠ Disable ban đầu → không gây giật
-
-    // Animation xuất hiện
+    drag.disable();
     gsap.fromTo(
       el,
       {
@@ -122,7 +118,7 @@ onMounted(async () => {
         ease: "elastic.out(0.6, 0.35)",
         delay: i * 0.25,
         onComplete: () => {
-          drag.enable(); // ⭐ DRAGGABLE ENABLE SAU ANIMATION
+          drag.enable();
         },
       }
     );
@@ -133,8 +129,8 @@ onMounted(async () => {
 <style scoped>
 .album-container {
   width: 100vw;
-  min-height: 100vh; /* 🔥 Sửa để mobile scroll được */
-  overflow-y: auto; /* 🔥 Cho phép scroll */
+  min-height: 100vh;
+  overflow-y: auto;
   position: relative;
 }
 

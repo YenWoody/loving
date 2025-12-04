@@ -1,21 +1,15 @@
 <template>
   <NuxtLayout>
     <div class="app-wrapper relative overflow-hidden min-h-screen">
-      <!-- Floating hearts container -->
       <div
         ref="heartContainer"
         class="heart-container fixed top-0 left-0 w-full h-full pointer-events-none z-0"
       />
 
-      <!-- Player -->
       <audio ref="bgm" loop preload="auto" src="/july.mp3" />
-
-      <!-- Nút mute/unmute -->
       <button class="music-btn" @click="toggleMusic">
         {{ isPlaying ? "🔊" : "🔇" }}
       </button>
-
-      <!-- Page transition -->
       <Transition name="fade-page" mode="out-in">
         <NuxtPage class="relative z-10" />
       </Transition>
@@ -73,9 +67,6 @@ onMounted(() => {
     bgm.value.play().catch(() => {});
   }
 
-  // ============================
-  // Hearts animation full page
-  // ============================
   const createHeart = () => {
     const heart = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     heart.setAttribute("viewBox", "0 0 24 24");

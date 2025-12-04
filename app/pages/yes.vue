@@ -3,7 +3,6 @@
     <div
       class="min-h-screen flex flex-col items-center pt-24 bg-[url('/paper-bg.jpg')] bg-cover bg-center"
     >
-      <!-- Title -->
       <h1
         class="text-[3.5rem] md:text-[5rem] p-2 text-center font-[cursive] text-[#b01257] mb-[5rem] font-semibold tracking-wide"
         data-aos="fade-up"
@@ -15,9 +14,6 @@
       >
         Your Surprise Menu, Love <span>💖</span>
       </h1>
-
-      <!-- Menu grid: 1 col mobile, 2 col tablet, 4 col desktop -->
-      <!-- Menu -->
       <div
         class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 mb-20 px-6"
       >
@@ -42,8 +38,6 @@
           <img src="/img/music.png" class="inner w-[80%]" />
         </NuxtLink>
       </div>
-
-      <!-- Back Button -->
     </div>
     <NuxtLink
       to="/"
@@ -59,8 +53,5 @@
 <script setup></script>
 
 <style>
-/* Nếu bạn dùng Google Fonts, import Great Vibes ở đây (hoặc import vào app.vue/layout) */
 @import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
-
-/* Một ít CSS tùy chỉnh (không dùng @apply) */
 </style>

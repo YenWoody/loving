@@ -5,8 +5,6 @@
     <div
       class="min-h-screen w-full bg-[url('/paper-bg.jpg')] bg-cover bg-fixed p-6 flex flex-col items-center"
     >
-      <!-- VIDEO WRAPPER -->
-
       <div
         class="w-full max-w-4xl bg-white/0 border-[12px] border-[#d62878] rounded-2xl shadow-2xl overflow-hidden mb-10"
       >
@@ -53,7 +51,6 @@
 </template>
 
 <style scoped>
-/* Optional – dùng để tạo font chữ đáng yêu hơn */
 h2 {
   font-family: "Comic Neue", "Quicksand", "Poppins", sans-serif;
 }

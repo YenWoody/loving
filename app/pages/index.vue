@@ -3,7 +3,6 @@
     class="home bg-cover bg-center min-h-screen flex items-center justify-center text-center"
   >
     <div ref="wrapper" class="wrapper">
-      <!-- Icon cute -->
       <img
         id="heart"
         src="/img/heart.png"
@@ -112,7 +111,7 @@ onMounted(() => {
   font-family: "Great Vibes", "Playfair Display", serif;
 }
 .space {
-  width: 1.2em; /* giữ khoảng cách khi animate */
+  width: 1.2em;
 }
 
 .btn {
