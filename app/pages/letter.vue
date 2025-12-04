@@ -155,7 +155,7 @@
       <div
         id="letter"
         ref="letter"
-        class="opacity-0 w-[480px] min-h-[600px] rounded-xl shadow-xl p-12 pe-20 leading-loose text-[1.2rem]"
+        class="opacity-0 w-[480px] min-h-[600px] rounded-xl shadow-xl p-12 pe-15 leading-loose text-[1.2rem]"
         style="
           background-image: url(/img/letter_bg.png);
           background-size: cover;
@@ -177,19 +177,33 @@
         "
       >
         <p>hey love, 💌</p>
-        <span class="line-clamp-12"
-          >Hey Love, Happy Monthsary! 🎉 Can you believe we’ve survived another
-          month of your [insert funny thing about them — like “endless corny
-          jokes” or “late- night food cravings”]? Honestly, I wouldn’t have it
-          any other way. Every day with you is like my favorite adventure —
-          sometimes crazy, sometimes sweet, but always worth it. Thank you for
-          making me laugh, for putting up with my [insert your funny trait —
-          like “weird mood swings” or “constant food cravings”], and for loving
-          me just the same. Here’s to more months of silly selfies, random
-          fights over food, and memories that we’ll laugh about forever. You’re
-          my favorite person — and yes, even when you annoy me, you’re still my
-          favorite. 💕 Love,
-        </span>
+        <div class="relative overflow-auto h-[90%] text-[1.1rem]">
+          >Dear Mehra! We met when I was about to turn 30, and it’s been nearly
+          4 years now. It might not seem like a long time to those around you,
+          but for me, it has been an incredibly meaningful journey. Through the
+          happiness and the sadness, the days of silence, or the arguments, this
+          remains the most precious time of my life. I know you’ll be running
+          around and doing so much, but don’t forget I’m always thinking about
+          you. I have imagined a thousand times what it would be like for us to
+          be together. And every single day, that thought is my motivation. The
+          desire to see you, to be with you, drives me to work
+          relentlessly—something I have never done before. I always think about
+          that one day, about the day we wake up next to each other. No calls,
+          no distance, just you and me. I imagine opening my eyes and seeing
+          your face right there, calm and safe. Holding your hand in the morning
+          and knowing we actually made it. No overthinking, no fear, just us. I
+          know that morning will feel like the world finally got it right. Until
+          then, I'll keep dreaming about our first real morning together… When I
+          found you, everything changed. When I started falling for you, I
+          realized I had never loved anyone like this before. You brought a new
+          light into my life, a warmth I never thought I needed. And I never
+          imagined that out of 8 billion people in this world, the one I love
+          would be you. I hope that next year, when you turn 30, I will be by
+          your side just as you were there for me when I turned 30. Wishing you
+          a happy birthday, a happy birthday month, and a year full of joy
+          ahead. I love you for three days: yesterday, today, and tomorrow. 💕
+          Love,
+        </div>
       </div>
 
       <div
@@ -211,7 +225,7 @@
     </div>
     <NuxtLink
       to="/yes"
-      class="card_menu absolute w-14 h-14 flex items-center justify-center rounded-full text-white text-2xl bg-[#c2006f] hover:scale-110 transition"
+      class="card_menu fixed w-14 h-14 flex items-center justify-center rounded-full text-white text-2xl bg-[#c2006f] hover:scale-110 transition"
       aria-label="back"
       style="left: 50%; transform: translateX(-50%); bottom: 30px"
     >

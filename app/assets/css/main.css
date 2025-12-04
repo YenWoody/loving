@@ -26,3 +26,32 @@ body {
 .card_menu {
   transition: all ease 0.5s !important;
 }
+/* ------- Scrollbar đẹp nhẹ nhàng toàn site ------- */
+::-webkit-scrollbar {
+  width: 10px; /* độ rộng scrollbar */
+  height: 10px; /* cho scrollbar ngang */
+  opacity: 0.5;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 192, 232, 0.3); /* hồng pastel rất mờ */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(199, 21, 133, 0.4); /* #c71585 nhưng opacity thấp */
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  transition: background 0.3s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(199, 21, 133, 0.75); /* hover đậm hơn */
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(199, 21, 133, 0.4) rgba(255, 192, 232, 0.3);
+}
