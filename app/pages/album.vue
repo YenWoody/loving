@@ -6,7 +6,7 @@
 
     <div
       ref="albumWrapper"
-      class="album-wrapper grid gap-4 px-4 md:grid-cols-4 grid-cols-1 auto-rows-auto"
+      class="album-wrapper overflow-hidden grid gap-4 px-4 md:grid-cols-4 grid-cols-1 auto-rows-auto"
     >
       <div
         v-for="(img, index) in photos"
@@ -83,7 +83,7 @@ onMounted(async () => {
       bounds: albumWrapper.value,
       onDragStart() {
         gsap.to(el, {
-          scale: 1.15,
+          scale: 1.8,
           rotation: 0,
           duration: 0.2,
         });
@@ -136,12 +136,12 @@ onMounted(async () => {
   min-height: 100vh; /* 🔥 Sửa để mobile scroll được */
   overflow-y: auto; /* 🔥 Cho phép scroll */
   position: relative;
-  padding-bottom: 100px; /* Để tránh che nút back */
 }
 
 .album-wrapper {
   width: 100%;
-  padding-bottom: 40px;
+  height: calc(100vh - 90px);
+  /* padding-bottom: 40px; */
 }
 
 .title {

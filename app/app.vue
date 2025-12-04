@@ -42,7 +42,19 @@ const toggleMusic = async () => {
     isPlaying.value = true;
   }
 };
-
+useHead({
+  title: "Happy Birthday Mehra ❤️",
+  meta: [
+    {
+      name: "description",
+      content: "A gift for my love",
+    },
+    {
+      name: "viewport",
+      content: "width=device-width, initial-scale=1",
+    },
+  ],
+});
 // Auto play nhạc khi user click/touch
 onMounted(() => {
   const unlock = async () => {

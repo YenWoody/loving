@@ -1,22 +1,24 @@
 <template>
   <div>
     <div
-      class="wrap relative min-h-[100vh] flex items-center justify-around gap-10 bg-[url('/paper-bg.jpg')] overflow-hidden bg-cover scale-[0.90]"
+      class="wrap relative min-h-[100vh] flex items-center justify-center gap-10 bg-[url('/paper-bg.jpg')] overflow-hidden bg-cover scale-[0.90]"
     >
+      <!-- ENVELOPE -->
       <div
         id="envelope"
         ref="envelope"
-        class="relative"
+        class="relative cursor-pointer"
         style="
           width: 370px;
-          position: relative;
           height: 300px;
           background-color: #c43f81;
           box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
           z-index: 99;
           transform: translateX(-15%);
         "
+        @click="openEnvelope"
       >
+        <!-- Borders -->
         <div
           ref="topBorder"
           style="
@@ -25,13 +27,12 @@
             left: 0;
             width: 100%;
             height: 140px;
-            background: white; /* Màu viền */
+            background: white;
             clip-path: polygon(50% 0%, 100% 100%, 0 100%);
-            z-index: 1; /* Dưới nắp chính (z-index: 30) */
-            transform: scale(1.03); /* Tạo độ dày viền */
+            z-index: 1;
+            transform: scale(1.03);
           "
         />
-
         <div
           ref="leftBorder"
           style="
@@ -40,13 +41,12 @@
             bottom: 0;
             width: 50%;
             height: 100%;
-            background: white; /* Màu viền */
+            background: white;
             clip-path: polygon(0 0, 100% 50%, 100% 100%, 0 100%);
-            z-index: 19; /* Dưới cánh chính (z-index: 20) */
-            transform: scale(1.02); /* Tạo độ dày viền */
+            z-index: 19;
+            transform: scale(1.02);
           "
         />
-
         <div
           ref="rightBorder"
           style="
@@ -55,13 +55,12 @@
             bottom: 0;
             width: 50%;
             height: 100%;
-            background: white; /* Màu viền */
+            background: white;
             clip-path: polygon(0 50%, 100% 0, 100% 100%, 0 100%);
-            z-index: 19; /* Dưới cánh chính (z-index: 20) */
-            transform: scale(1.02); /* Tạo độ dày viền */
+            z-index: 19;
+            transform: scale(1.02);
           "
         />
-
         <div
           ref="bottomBorder"
           style="
@@ -70,15 +69,15 @@
             left: 0;
             width: 100%;
             height: 65%;
-            background: white; /* Màu viền */
-            clip-path: polygon(50% 0%, 100% 100%, 0 100%);
-            z-index: 29; /* Dưới cánh chính (z-index: 30) */
-            transform: scale(1.03); /* Tạo độ dày viền */
+            background: white;
+            clip-path: polygon(50% 0, 100% 100%, 0 100%);
+            z-index: 29;
+            transform: scale(1.03);
           "
         />
 
+        <!-- Envelope Flaps -->
         <div
-          id="top"
           ref="topFlap"
           style="
             position: absolute;
@@ -91,9 +90,7 @@
             z-index: 1;
           "
         />
-
         <div
-          id="left"
           ref="leftFlap"
           style="
             position: absolute;
@@ -106,9 +103,7 @@
             z-index: 20;
           "
         />
-
         <div
-          id="right"
           ref="rightFlap"
           style="
             position: absolute;
@@ -121,9 +116,7 @@
             z-index: 20;
           "
         />
-
         <div
-          id="bottom"
           ref="bottomFlap"
           style="
             position: absolute;
@@ -132,55 +125,77 @@
             width: 100%;
             height: 65%;
             background: #c21755;
-            clip-path: polygon(50% 0%, 100% 100%, 0 100%);
+            clip-path: polygon(50% 0, 100% 100%, 0 100%);
             z-index: 30;
           "
         />
 
-        <img
-          ref="photo"
-          src="/img/envelop_1.jpg"
-          class="rounded-xl shadow-xl rotate-[-4deg]"
+        <!-- LETTER INSIDE ENVELOPE (clone) -->
+        <div
+          ref="letterInside"
+          class="rounded-xl shadow-xl p-6 text-[1.1rem]"
           style="
             position: absolute;
             top: -30%;
             left: 50%;
-            transform: translateX(-50%) rotate(-4deg);
-            width: 250px;
+            transform: translateX(-50%) scale(0.55) rotate(-4deg);
+            width: 100%;
+            background-image: url(&quot;/img/letter_bg.png&quot;);
+            background-size: cover;
+            background-position: center;
             z-index: 3;
+            pointer-events: none;
+            font-family:
+              Great Vibes,
+              cursive;
           "
-        />
+        >
+          <!-- giữ nguyên toàn bộ nội dung -->
+          <p>hey love, 💌</p>
+          <div class="relative overflow-hidden h-[220px] line-clamp-4">
+            Dear Mehra! We met when I was about to turn 30, and it’s been nearly
+            4 years now. It might not seem like a long time to those around you,
+            but for me, it has been an incredibly meaningful journey. Through
+            the happiness and the sadness, the days of silence, or the
+            arguments, this remains the most precious time of my life. I know
+            you’ll be running around and doing so much, but don’t forget I’m
+            always thinking about you. I have imagined a thousand times what it
+            would be like for us to be together. And every single day, that
+            thought is my motivation. The desire to see you, to be with you,
+            drives me to work relentlessly—something I have never done before. I
+            always think about that one day, about the day we wake up next to
+            each other. No calls, no distance, just you and me. I imagine
+            opening my eyes and seeing your face right there, calm and safe.
+            Holding your hand in the morning and knowing we actually made it. No
+            overthinking, no fear, just us.
+            <!-- (nguyên nội dung thư của bạn ở đây — KHÔNG thay đổi) -->
+          </div>
+        </div>
       </div>
 
+      <!-- LETTER REAL (GỐC) -->
       <div
         id="letter"
         ref="letter"
-        class="opacity-0 w-[480px] min-h-[600px] rounded-xl shadow-xl p-12 pe-15 leading-loose text-[1.2rem]"
+        class="opacity-0 hidden pointer-events-none top-0 w-[80vh] h-[90vh] rounded-xl p-12 leading-loose text-[1.2rem] z-[1000]"
         style="
           background-image: url(/img/letter_bg.png);
           background-size: cover;
-          background-position: center center;
-          background-repeat: no-repeat;
+          background-position: center;
           position: absolute;
-          z-index: 120;
-          translate: none;
-          border: unset;
-          width: 40%;
-          height: 500px;
-          rotate: none;
-          scale: none;
-          opacity: 1;
+
           transform: rotate(10deg) translateX(10%);
           font-family:
             Great Vibes,
             cursive;
         "
       >
-        <p>hey love, 💌</p>
-        <div class="relative overflow-auto h-[90%] text-[1.1rem]">
-          >Dear Mehra! We met when I was about to turn 30, and it’s been nearly
-          4 years now. It might not seem like a long time to those around you,
-          but for me, it has been an incredibly meaningful journey. Through the
+        <!-- NGUYÊN NỘI DUNG BẠN GIỮ NGUYÊN -->
+        <p class="text-[1.5rem]">hey love, 💌</p>
+        <div class="relative overflow-auto h-[90%] text-[1.5rem] top-0">
+          Dear Mehra! We met when I was about to turn 30, and it’s been nearly 4
+          years now. It might not seem like a long time to those around you, but
+          for me, it has been an incredibly meaningful journey. Through the
           happiness and the sadness, the days of silence, or the arguments, this
           remains the most precious time of my life. I know you’ll be running
           around and doing so much, but don’t forget I’m always thinking about
@@ -206,31 +221,30 @@
         </div>
       </div>
 
+      <!-- PHOTOS -->
       <div
         id="film-card"
         ref="filmCard"
         class="w-[260px] border-[12px] border-[#c21755] shadow-2xl p-2 z-50 bg-white"
         style="
-          z-index: 120;
           font-family:
             Great Vibes,
             cursive;
-          transform: rotate(1deg) translateX(20%);
+          transform: rotate(5deg) translateX(20%);
+          z-index: 120;
         "
       >
         <img src="/img/letter_pic_1.jpg" class="mb-3 rounded-sm" />
         <img src="/img/letter_pic_2.jpg" class="rounded-sm" />
       </div>
-      <!-- Back Button -->
     </div>
+
     <NuxtLink
       to="/yes"
       class="card_menu fixed w-14 h-14 flex items-center justify-center rounded-full text-white text-2xl bg-[#c2006f] hover:scale-110 transition"
-      aria-label="back"
       style="left: 50%; transform: translateX(-50%); bottom: 30px"
+      >↩</NuxtLink
     >
-      ↩
-    </NuxtLink>
   </div>
 </template>
 
@@ -239,81 +253,90 @@ import { onMounted, ref } from "vue";
 import { gsap } from "gsap";
 
 const envelope = ref(null);
-const photo = ref(null);
 const letter = ref(null);
+const letterInside = ref(null);
 const filmCard = ref(null);
 
-// Refs cho 4 mảnh chính
 const topFlap = ref(null);
 const leftFlap = ref(null);
 const rightFlap = ref(null);
 const bottomFlap = ref(null);
 
-// Refs cho 4 mảnh viền (border)
 const topBorder = ref(null);
 const leftBorder = ref(null);
 const rightBorder = ref(null);
 const bottomBorder = ref(null);
 
 onMounted(() => {
-  if (envelope.value && photo.value && letter.value && filmCard.value) {
-    const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
-
-    // ✉ GIỮ ENVELOPE Ở TRẠNG THÁI HIỂN THỊ
-    tl.from(envelope.value, { duration: 0.01 });
-
-    // Các thành phần khác animation TỪ trạng thái ẩn ĐẾN trạng thái hiện tại (opacity: 1)
-    tl.from(photo.value, { y: 320, opacity: 1, duration: 1.4 }, "-=.2")
-      .from(letter.value, { y: -120, opacity: 0, duration: 1.2 }, "-=.5")
-      .from(filmCard.value, { x: 150, opacity: 0, duration: 1 }, "-=.6");
-  }
+  // Ẩn thư gốc khi load trang
+  gsap.set(letter.value, { opacity: 0, scale: 0.9 });
+  gsap.fromTo(
+    letterInside.value,
+    {
+      y: 140, // nằm thấp hơn trong phong bì
+      opacity: 1,
+    },
+    {
+      y: 0, // trượt lên miệng phong bì
+      opacity: 1,
+      duration: 1.2,
+      ease: "power3.out",
+      delay: 0.3,
+    }
+  );
 });
+
+// CLICK OPEN ENVELOPE
+const openEnvelope = () => {
+  const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
+
+  tl.to(letterInside.value, {
+    y: -300,
+    opacity: 0,
+    duration: 1,
+  }).to(
+    letter.value,
+    {
+      opacity: 1,
+      scale: 1,
+      x: 0,
+      y: 0,
+      display: "block",
+      rotate: 0,
+      duration: 1.2,
+      pointerEvents: "auto",
+    },
+    "-=0.6"
+  );
+};
 </script>
 
 <style>
-/* Nếu bạn dùng Google Fonts, import Great Vibes ở đây (hoặc import vào app.vue/layout) */
 @import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
-/* PC giữ nguyên */
 
 @media (max-width: 768px) {
   .wrap {
-    flex-direction: column !important; /* ⬇ 3 thằng xuống 1 cột */
+    flex-direction: column !important;
     justify-content: flex-start;
     gap: 50px;
   }
 
-  /* Reset transform tránh lệch, đè lên nhau */
   #letter {
-    position: relative !important; /* bay màu absolute */
+    /* position: relative !important; */
     transform: none !important;
-    margin-top: 20px;
     width: 100% !important;
+    margin-top: 20px;
   }
 
-  /* cho cả envelope và filmCard cũng đứng đúng flow */
   #envelope {
-    top: 25vh !important;
+    position: relative !important;
+    transform: translateY(50%) !important;
+    width: 90% !important;
   }
-  #envelope,
   #film-card {
     position: relative !important;
-    transform: none !important;
     width: 90% !important;
-    margin: 0 auto;
-  }
-
-  /* Thu ảnh nếu to quá */
-  img[ref="photo"] {
-    width: 60% !important;
-    top: -30% !important;
-  }
-
-  /* Letter auto scale */
-  .letter {
-    height: auto;
-    font-size: 18px;
+    transform: rotate(5deg) translateX(5%) !important;
   }
 }
-
-/* Một ít CSS tùy chỉnh (không dùng @apply) */
 </style>
