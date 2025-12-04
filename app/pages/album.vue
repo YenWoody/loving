@@ -22,7 +22,7 @@
       aria-label="back"
       style="left: 50%; transform: translateX(-50%); bottom: 30px"
     >
-      ↩
+      <Icon icon="mdi:arrow-left" width="32" height="32" />
     </NuxtLink>
   </div>
 </template>
@@ -31,6 +31,7 @@
 import { ref, onMounted, nextTick } from "vue";
 import gsap from "gsap";
 import Draggable from "gsap/Draggable";
+import { Icon } from "@iconify/vue";
 
 gsap.registerPlugin(Draggable);
 
