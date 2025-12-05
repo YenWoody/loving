@@ -11,14 +11,14 @@
       <div
         v-for="(img, index) in photos"
         :key="index"
-        class="relative w-full h-[240px] md:h-[300px] flex items-center justify-center"
+        class="relative w-full h-[280px] md:h-[300px] flex items-center justify-center"
       >
         <img ref="photoRefs" class="photo" :src="img" />
       </div>
     </div>
     <NuxtLink
       to="/yes"
-      class="card_menu fixed w-14 h-14 flex items-center justify-center rounded-full text-white text-2xl bg-[#c2006f] hover:scale-110 transition"
+      class="card_menu z-[10000] fixed w-14 h-14 flex items-center justify-center rounded-full text-white text-2xl bg-[#c2006f] hover:scale-110 transition"
       aria-label="back"
       style="left: 50%; transform: translateX(-50%); bottom: 30px"
     >
@@ -70,59 +70,99 @@ onMounted(async () => {
 
   if (!photosEl.length) return;
 
+  const isMobile = window.innerWidth <= 768;
+
   photosEl.forEach((el, i) => {
     const box = cells[i];
-    const finalPos = randomPositionInsideCell(box, el);
-    const drag = Draggable.create(el, {
-      type: "x,y",
-      inertia: true,
-      edgeResistance: 0.5,
-      activeCursor: "grabbing",
-      zIndexBoost: false,
-      bounds: albumWrapper.value,
-      onDragStart() {
-        gsap.to(el, {
-          scale: 1.8,
-          rotation: 0,
-          duration: 0.2,
-        });
-        el.style.zIndex = 999;
-      },
-      onRelease() {
-        gsap.to(el, {
-          scale: 1,
-          rotation: gsap.utils.random(-10, 10),
-          duration: 0.35,
-          ease: "elastic.out(1, 0.4)",
-        });
-        el.style.zIndex = i + 10;
-      },
-    })[0];
 
-    drag.disable();
-    gsap.fromTo(
-      el,
-      {
-        opacity: 0,
-        scale: 0.2,
-        x: gsap.utils.random(-200, 200),
-        y: gsap.utils.random(-300, -150),
-        rotation: gsap.utils.random(-180, 180),
-      },
-      {
+    if (isMobile) {
+      // Mobile: Không transform x/y, ảnh trải đều, drag chỉ scale/rotation
+      gsap.set(el, {
         opacity: 1,
         scale: 1,
-        x: finalPos.x,
-        y: finalPos.y,
-        rotation: gsap.utils.random(-15, 15),
-        duration: 2,
-        ease: "elastic.out(0.6, 0.35)",
-        delay: i * 0.25,
-        onComplete: () => {
-          drag.enable();
+        x: 0,
+        y: 0,
+        rotation: 0,
+      });
+
+      const drag = Draggable.create(el, {
+        type: "",
+        inertia: false,
+        activeCursor: "grabbing",
+        zIndexBoost: false,
+        onDragStart() {
+          gsap.to(el, {
+            scale: 1.15,
+            rotation: 0,
+            duration: 0.2,
+          });
+          el.style.zIndex = 999;
         },
-      }
-    );
+        onRelease() {
+          gsap.to(el, {
+            scale: 1,
+            rotation: 0,
+            duration: 0.35,
+            ease: "elastic.out(1, 0.4)",
+          });
+          el.style.zIndex = i + 10;
+        },
+      })[0];
+      drag.enable();
+    } else {
+      // Desktop: Random vị trí x/y, drag tự do
+      const finalPos = randomPositionInsideCell(box, el);
+      const drag = Draggable.create(el, {
+        type: "x,y",
+        inertia: true,
+        edgeResistance: 0.5,
+        activeCursor: "grabbing",
+        zIndexBoost: false,
+        bounds: albumWrapper.value,
+        onDragStart() {
+          gsap.to(el, {
+            scale: 1.8,
+            rotation: 0,
+            duration: 0.2,
+          });
+          el.style.zIndex = 999;
+        },
+        onRelease() {
+          gsap.to(el, {
+            scale: 1,
+            rotation: gsap.utils.random(-10, 10),
+            duration: 0.35,
+            ease: "elastic.out(1, 0.4)",
+          });
+          el.style.zIndex = i + 10;
+        },
+      })[0];
+
+      drag.disable();
+      gsap.fromTo(
+        el,
+        {
+          opacity: 0,
+          scale: 0.2,
+          x: gsap.utils.random(-200, 200),
+          y: gsap.utils.random(-300, -150),
+          rotation: gsap.utils.random(-180, 180),
+        },
+        {
+          opacity: 1,
+          scale: 1,
+          x: finalPos.x,
+          y: finalPos.y,
+          rotation: gsap.utils.random(-15, 15),
+          duration: 2,
+          ease: "elastic.out(0.6, 0.35)",
+          delay: i * 0.25,
+          onComplete: () => {
+            drag.enable();
+          },
+        }
+      );
+    }
   });
 });
 </script>
@@ -151,7 +191,8 @@ onMounted(async () => {
 }
 
 .photo {
-  width: 80%;
+  width: 100%;
+  height: auto;
   max-width: 260px;
   position: absolute;
   opacity: 0;
@@ -162,5 +203,19 @@ onMounted(async () => {
 
 .photo:active {
   cursor: grabbing;
+}
+
+@media (max-width: 768px) {
+  .album-wrapper {
+    height: auto !important;
+    min-height: 0 !important;
+  }
+
+  .photo {
+    position: absolute !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    /* Không ép transform để GSAP/Draggable tự quản lý hiệu ứng scale/rotation */
+  }
 }
 </style>
